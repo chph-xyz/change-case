@@ -60,6 +60,36 @@
     button:hover {
       background-color: #dddddd;
     }
+
+    .reset-button,
+    .paste-button {
+      background-color: #f0f0f0; /* Light gray for consistency */
+      color: #333333;
+    }
+
+    .reset-button:hover,
+    .paste-button:hover {
+      background-color: #dddddd;
+    }
+
+    .reset-button,
+    .paste-button {
+      padding: 8px 12px;
+      margin-left: 0; /* No margin between Reset and Paste buttons */
+    }
+
+    .input-box-container {
+      display: flex;
+      align-items: center;
+      gap: 5px; /* Ensure buttons are close to the input box */
+    }
+
+    .button-container {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+    }
+
   </style>
 </head>
 <body>
@@ -70,8 +100,12 @@
 <!-- Inputs and Outputs -->
 <div class="box-container">
   <!-- First box: User input -->
-  <div class="box">
+  <div class="input-box-container">
     <input type="text" id="inputText" class="text-field" placeholder="input text to upper or lower case">
+    <div class="button-container">
+      <button class="reset-button" onclick="resetInput()">Reset</button>
+      <button class="paste-button" onclick="pasteClipboard()">Paste</button>
+    </div>
   </div>
 
   <!-- Second box: Output lowercase with hyphens + copy button -->
@@ -128,6 +162,23 @@
     textField.select();
     textField.setSelectionRange(0, 99999); // For mobile devices
     document.execCommand('copy');
+  }
+
+  function resetInput() {
+    inputText.value = ''; // Clears the input field
+    lowercaseOutput.value = '';
+    uppercaseOutput.value = '';
+    lowercaseNoHyphen.value = '';
+    uppercaseNoHyphen.value = '';
+  }
+
+  function pasteClipboard() {
+    navigator.clipboard.readText().then(text => {
+      inputText.value = text;
+      inputText.dispatchEvent(new Event('input')); // Trigger input event to update outputs
+    }).catch(err => {
+      console.error('Failed to read clipboard contents: ', err);
+    });
   }
 </script>
 
