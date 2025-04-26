@@ -74,16 +74,28 @@
     <input type="text" id="inputText" class="text-field" placeholder="input text to upper or lower case">
   </div>
 
-  <!-- Second box: Output lowercase + copy button -->
+  <!-- Second box: Output lowercase with hyphens + copy button -->
   <div class="box">
-    <input type="text" id="lowercaseOutput" class="text-field" placeholder="to lower case" readonly>
+    <input type="text" id="lowercaseOutput" class="text-field" placeholder="to lower case with hyphens" readonly>
     <button onclick="copyText('lowercaseOutput')">Copy</button>
   </div>
 
-  <!-- Third box: Output uppercase + copy button -->
+  <!-- Third box: Output uppercase with hyphens + copy button -->
   <div class="box">
-    <input type="text" id="uppercaseOutput" class="text-field" placeholder="TO UPPER CASE" readonly>
+    <input type="text" id="uppercaseOutput" class="text-field" placeholder="TO UPPER CASE with hyphens" readonly>
     <button onclick="copyText('uppercaseOutput')">Copy</button>
+  </div>
+
+  <!-- Fourth box: Output lowercase without hyphens + copy button -->
+  <div class="box">
+    <input type="text" id="lowercaseNoHyphen" class="text-field" placeholder="to lower case without hyphens" readonly>
+    <button onclick="copyText('lowercaseNoHyphen')">Copy</button>
+  </div>
+
+  <!-- Fifth box: Output uppercase without hyphens + copy button -->
+  <div class="box">
+    <input type="text" id="uppercaseNoHyphen" class="text-field" placeholder="TO UPPER CASE without hyphens" readonly>
+    <button onclick="copyText('uppercaseNoHyphen')">Copy</button>
   </div>
 </div>
 
@@ -91,11 +103,24 @@
   const inputText = document.getElementById('inputText');
   const lowercaseOutput = document.getElementById('lowercaseOutput');
   const uppercaseOutput = document.getElementById('uppercaseOutput');
+  const lowercaseNoHyphen = document.getElementById('lowercaseNoHyphen');
+  const uppercaseNoHyphen = document.getElementById('uppercaseNoHyphen');
 
   inputText.addEventListener('input', () => {
-    const value = inputText.value;
-    lowercaseOutput.value = value.toLowerCase();
-    uppercaseOutput.value = value.toUpperCase();
+    let value = inputText.value;
+    
+    // For the second and third boxes, replace spaces and underscores with hyphens
+    let valueWithHyphen = value.replace(/[\s_]+/g, '-');
+
+    // For the fourth and fifth boxes, don't modify spaces or underscores
+    let valueNoChange = value; // Leave as is for these outputs
+
+    // Set the outputs
+    lowercaseOutput.value = valueWithHyphen.toLowerCase();
+    uppercaseOutput.value = valueWithHyphen.toUpperCase();
+
+    lowercaseNoHyphen.value = valueNoChange.toLowerCase();
+    uppercaseNoHyphen.value = valueNoChange.toUpperCase();
   });
 
   function copyText(elementId) {
