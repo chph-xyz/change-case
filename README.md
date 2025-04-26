@@ -1,3 +1,3 @@
-simple tool for case conversion
-replace spaces with hyphens
+simple tool for case conversion <br>
+replace spaces with hyphens <br>
 replace underscores with hyphens
