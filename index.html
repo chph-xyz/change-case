@@ -13,7 +13,7 @@
       align-items: flex-start;
       justify-content: flex-start;
       height: 100vh;
-      font-family: sans-serif;
+      font-family: 'Courier New', Courier, monospace;
     }
 
     .par1 {
@@ -26,7 +26,6 @@
       margin-top: 20px;
       display: flex;
       flex-direction: column;
-      width: 300px;
       gap: 10px;
     }
 
@@ -36,22 +35,22 @@
       gap: 5px;
     }
 
-    input, button {
-      flex: 1;
+    .text-field {
+      width: 600px; /* Doubled width */
       padding: 8px;
       font-size: 16px;
-      font-family: sans-serif;
-    }
-
-    input {
+      font-family: 'Courier New', Courier, monospace;
       color: black;
     }
 
-    input[readonly] {
+    .text-field[readonly] {
       background-color: #f0f0f0;
     }
 
     button {
+      padding: 8px 12px;
+      font-size: 16px;
+      font-family: 'Courier New', Courier, monospace;
       background-color: white;
       color: #333333; /* Darker text for Copy button */
       border: none;
@@ -72,18 +71,18 @@
 <div class="box-container">
   <!-- First box: User input -->
   <div class="box">
-    <input type="text" id="inputText" placeholder="input text to upper or lower case">
+    <input type="text" id="inputText" class="text-field" placeholder="input text to upper or lower case">
   </div>
 
   <!-- Second box: Output lowercase + copy button -->
   <div class="box">
-    <input type="text" id="lowercaseOutput" placeholder="to lower case" readonly>
+    <input type="text" id="lowercaseOutput" class="text-field" placeholder="to lower case" readonly>
     <button onclick="copyText('lowercaseOutput')">Copy</button>
   </div>
 
   <!-- Third box: Output uppercase + copy button -->
   <div class="box">
-    <input type="text" id="uppercaseOutput" placeholder="TO UPPER CASE" readonly>
+    <input type="text" id="uppercaseOutput" class="text-field" placeholder="TO UPPER CASE" readonly>
     <button onclick="copyText('uppercaseOutput')">Copy</button>
   </div>
 </div>
