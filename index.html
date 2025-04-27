@@ -36,7 +36,7 @@
     }
 
     .text-field {
-      width: 600px; /* Doubled width */
+      width: 600px;
       padding: 8px;
       font-size: 16px;
       font-family: 'Courier New', Courier, monospace;
@@ -52,7 +52,7 @@
       font-size: 16px;
       font-family: 'Courier New', Courier, monospace;
       background-color: white;
-      color: #333333; /* Darker text for Copy button */
+      color: #333333;
       border: none;
       cursor: pointer;
     }
@@ -62,27 +62,27 @@
     }
 
     .reset-button {
-      background-color: #e74c3c; /* Red color for Reset button */
+      background-color: #e74c3c;
       color: white;
     }
 
     .paste-button {
-      background-color: #3498db; /* Blue color for Paste button */
+      background-color: #3498db;
       color: white;
     }
 
     .reset-button:hover {
-      background-color: #c0392b; /* Darker red on hover */
+      background-color: #c0392b;
     }
 
     .paste-button:hover {
-      background-color: #2980b9; /* Darker blue on hover */
+      background-color: #2980b9;
     }
 
     .input-box-container {
       display: flex;
       align-items: center;
-      gap: 5px; /* Ensure buttons are close to the input box */
+      gap: 5px;
     }
 
     .button-container {
@@ -91,16 +91,26 @@
       align-items: center;
     }
 
+    .copy-group {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .copy-label {
+      color: white;
+      font-size: 14px;
+      font-family: 'Courier New', Courier, monospace;
+    }
+
   </style>
 </head>
 <body>
 
-<!-- Title -->
 <div class="par1">Change Case</div>
 
-<!-- Inputs and Outputs -->
 <div class="box-container">
-  <!-- First box: User input -->
+
   <div class="input-box-container">
     <input type="text" id="inputText" class="text-field" placeholder="input text to upper or lower case">
     <div class="button-container">
@@ -109,29 +119,38 @@
     </div>
   </div>
 
-  <!-- Second box: Output lowercase with hyphens + copy button -->
   <div class="box">
     <input type="text" id="lowercaseOutput" class="text-field" placeholder="to lower case with hyphens" readonly>
-    <button onclick="copyText('lowercaseOutput')">Copy</button>
+    <div class="copy-group">
+      <button onclick="copyText('lowercaseOutput')">Copy</button>
+      <div class="copy-label">Lowercase + hyphens</div>
+    </div>
   </div>
 
-  <!-- Third box: Output uppercase with hyphens + copy button -->
   <div class="box">
     <input type="text" id="uppercaseOutput" class="text-field" placeholder="TO UPPER CASE with hyphens" readonly>
-    <button onclick="copyText('uppercaseOutput')">Copy</button>
+    <div class="copy-group">
+      <button onclick="copyText('uppercaseOutput')">Copy</button>
+      <div class="copy-label">Uppercase + hyphens</div>
+    </div>
   </div>
 
-  <!-- Fourth box: Output lowercase without hyphens + copy button -->
   <div class="box">
     <input type="text" id="lowercaseNoHyphen" class="text-field" placeholder="to lower case without hyphens" readonly>
-    <button onclick="copyText('lowercaseNoHyphen')">Copy</button>
+    <div class="copy-group">
+      <button onclick="copyText('lowercaseNoHyphen')">Copy</button>
+      <div class="copy-label">Lowercase no hyphens</div>
+    </div>
   </div>
 
-  <!-- Fifth box: Output uppercase without hyphens + copy button -->
   <div class="box">
     <input type="text" id="uppercaseNoHyphen" class="text-field" placeholder="TO UPPER CASE without hyphens" readonly>
-    <button onclick="copyText('uppercaseNoHyphen')">Copy</button>
+    <div class="copy-group">
+      <button onclick="copyText('uppercaseNoHyphen')">Copy</button>
+      <div class="copy-label">Uppercase no hyphens</div>
+    </div>
   </div>
+
 </div>
 
 <script>
@@ -143,17 +162,11 @@
 
   inputText.addEventListener('input', () => {
     let value = inputText.value;
-    
-    // For the second and third boxes, replace spaces and underscores with hyphens
     let valueWithHyphen = value.replace(/[\s_]+/g, '-');
+    let valueNoChange = value;
 
-    // For the fourth and fifth boxes, don't modify spaces or underscores
-    let valueNoChange = value; // Leave as is for these outputs
-
-    // Set the outputs
     lowercaseOutput.value = valueWithHyphen.toLowerCase();
     uppercaseOutput.value = valueWithHyphen.toUpperCase();
-
     lowercaseNoHyphen.value = valueNoChange.toLowerCase();
     uppercaseNoHyphen.value = valueNoChange.toUpperCase();
   });
@@ -161,12 +174,12 @@
   function copyText(elementId) {
     const textField = document.getElementById(elementId);
     textField.select();
-    textField.setSelectionRange(0, 99999); // For mobile devices
+    textField.setSelectionRange(0, 99999);
     document.execCommand('copy');
   }
 
   function resetInput() {
-    inputText.value = ''; // Clears the input field
+    inputText.value = '';
     lowercaseOutput.value = '';
     uppercaseOutput.value = '';
     lowercaseNoHyphen.value = '';
@@ -176,7 +189,7 @@
   function pasteClipboard() {
     navigator.clipboard.readText().then(text => {
       inputText.value = text;
-      inputText.dispatchEvent(new Event('input')); // Trigger input event to update outputs
+      inputText.dispatchEvent(new Event('input'));
     }).catch(err => {
       console.error('Failed to read clipboard contents: ', err);
     });
