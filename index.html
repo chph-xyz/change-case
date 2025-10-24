@@ -17,7 +17,6 @@
     }
 
     .par1 {
-      font-family: 'Courier New', Courier, monospace;
       font-size: 25px;
       color: white;
     }
@@ -102,7 +101,6 @@
       font-size: 14px;
       font-family: 'Courier New', Courier, monospace;
     }
-
   </style>
 </head>
 <body>
@@ -151,6 +149,15 @@
     </div>
   </div>
 
+  <!-- New box for replacing dashes with underscores -->
+  <div class="box">
+    <input type="text" id="underscoredOutput" class="text-field" placeholder="replace dashes with underscores" readonly>
+    <div class="copy-group">
+      <button onclick="copyText('underscoredOutput')">Copy</button>
+      <div class="copy-label">Dashes → underscores</div>
+    </div>
+  </div>
+
 </div>
 
 <script>
@@ -159,6 +166,7 @@
   const uppercaseOutput = document.getElementById('uppercaseOutput');
   const lowercaseNoHyphen = document.getElementById('lowercaseNoHyphen');
   const uppercaseNoHyphen = document.getElementById('uppercaseNoHyphen');
+  const underscoredOutput = document.getElementById('underscoredOutput');
 
   inputText.addEventListener('input', () => {
     let value = inputText.value;
@@ -169,6 +177,7 @@
     uppercaseOutput.value = valueWithHyphen.toUpperCase();
     lowercaseNoHyphen.value = valueNoChange.toLowerCase();
     uppercaseNoHyphen.value = valueNoChange.toUpperCase();
+    underscoredOutput.value = value.replace(/-/g, '_');
   });
 
   function copyText(elementId) {
@@ -184,6 +193,7 @@
     uppercaseOutput.value = '';
     lowercaseNoHyphen.value = '';
     uppercaseNoHyphen.value = '';
+    underscoredOutput.value = '';
   }
 
   function pasteClipboard() {
