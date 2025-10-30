@@ -149,12 +149,12 @@
     </div>
   </div>
 
-  <!-- New box for replacing dashes with underscores -->
+  <!-- Box for replacing dashes, hyphens, and spaces with underscores -->
   <div class="box">
-    <input type="text" id="underscoredOutput" class="text-field" placeholder="replace dashes with underscores" readonly>
+    <input type="text" id="underscoreAllOutput" class="text-field" placeholder="replace dashes, hyphens, and spaces with underscores" readonly>
     <div class="copy-group">
-      <button onclick="copyText('underscoredOutput')">Copy</button>
-      <div class="copy-label">Dashes → underscores</div>
+      <button onclick="copyText('underscoreAllOutput')">Copy</button>
+      <div class="copy-label">Dashes, hyphens, spaces → underscores</div>
     </div>
   </div>
 
@@ -166,7 +166,7 @@
   const uppercaseOutput = document.getElementById('uppercaseOutput');
   const lowercaseNoHyphen = document.getElementById('lowercaseNoHyphen');
   const uppercaseNoHyphen = document.getElementById('uppercaseNoHyphen');
-  const underscoredOutput = document.getElementById('underscoredOutput');
+  const underscoreAllOutput = document.getElementById('underscoreAllOutput');
 
   inputText.addEventListener('input', () => {
     let value = inputText.value;
@@ -177,7 +177,7 @@
     uppercaseOutput.value = valueWithHyphen.toUpperCase();
     lowercaseNoHyphen.value = valueNoChange.toLowerCase();
     uppercaseNoHyphen.value = valueNoChange.toUpperCase();
-    underscoredOutput.value = value.replace(/-/g, '_');
+    underscoreAllOutput.value = value.replace(/[\s\-–—]+/g, '_'); // spaces + hyphens + dashes
   });
 
   function copyText(elementId) {
@@ -193,7 +193,7 @@
     uppercaseOutput.value = '';
     lowercaseNoHyphen.value = '';
     uppercaseNoHyphen.value = '';
-    underscoredOutput.value = '';
+    underscoreAllOutput.value = '';
   }
 
   function pasteClipboard() {
