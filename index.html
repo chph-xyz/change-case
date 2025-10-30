@@ -121,7 +121,7 @@
     <input type="text" id="lowercaseOutput" class="text-field" placeholder="to lower case with hyphens" readonly>
     <div class="copy-group">
       <button onclick="copyText('lowercaseOutput')">Copy</button>
-      <div class="copy-label">Lowercase + hyphens</div>
+      <div class="copy-label">Lowercase with hyphens</div>
     </div>
   </div>
 
@@ -129,7 +129,7 @@
     <input type="text" id="uppercaseOutput" class="text-field" placeholder="TO UPPER CASE with hyphens" readonly>
     <div class="copy-group">
       <button onclick="copyText('uppercaseOutput')">Copy</button>
-      <div class="copy-label">Uppercase + hyphens</div>
+      <div class="copy-label">Uppercase with hyphens</div>
     </div>
   </div>
 
@@ -149,12 +149,12 @@
     </div>
   </div>
 
-  <!-- Box for replacing dashes, hyphens, and spaces with underscores -->
+  <!-- Box for replacing dashes, hyphens, and spaces with underscores and making lowercase -->
   <div class="box">
-    <input type="text" id="underscoreAllOutput" class="text-field" placeholder="replace dashes, hyphens, and spaces with underscores" readonly>
+    <input type="text" id="underscoreAllOutput" class="text-field" placeholder="replace hyphens and spaces with underscores, to lowercase" readonly>
     <div class="copy-group">
       <button onclick="copyText('underscoreAllOutput')">Copy</button>
-      <div class="copy-label">Dashes, hyphens, spaces → underscores</div>
+      <div class="copy-label">Hyphens/spaces to underscores and lowercase</div>
     </div>
   </div>
 
@@ -177,7 +177,7 @@
     uppercaseOutput.value = valueWithHyphen.toUpperCase();
     lowercaseNoHyphen.value = valueNoChange.toLowerCase();
     uppercaseNoHyphen.value = valueNoChange.toUpperCase();
-    underscoreAllOutput.value = value.replace(/[\s\-–—]+/g, '_'); // spaces + hyphens + dashes
+    underscoreAllOutput.value = value.replace(/[\s\-–—]+/g, '_').toLowerCase();
   });
 
   function copyText(elementId) {
